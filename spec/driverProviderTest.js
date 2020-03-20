@@ -6,13 +6,13 @@
  * - selenium jar and chromedriver in protractor/selenium, where
  *   webdriver-manager stores them.
  * - if you want to test saucelabs, test with --sauceUser and --sauceKey
- * - if you want to test browserstack driverProvider, test with 
+ * - if you want to test browserstack driverProvider, test with
      --browserstackUser and --browserstackKey
  * You should verify that there are no lingering processes when these tests
  * complete.
  */
 
-const argv = require('optimist').argv;
+const argv = require('yargs').argv;
 const env = require('./environment');
 
 const Direct = require('../built/driverProviders/direct').Direct;
@@ -29,7 +29,7 @@ const testDriverProvider = async (driverProvider) => {
   if (url != 'about:blank') {
     throw new Error(`url was not about:blank, instead found ${url}`);
   }
-  
+
   if (driverProvider.updateJob) {
     await driverProvider.updateJob({'passed': true});
     await driverProvider.teardownEnv();
